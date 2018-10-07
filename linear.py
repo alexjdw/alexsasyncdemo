@@ -9,6 +9,7 @@ pages = [
     "https://www.wuxiaworld.com/novel/monarch-of-evernight",
     ]
 
+
 def get_webpage(page):
     response = requests.get(page)
     print("Getting " + str(response.url))
@@ -20,8 +21,7 @@ def get_chapters(pagetext):
     result = []
 
     expr = r'<span>((\w|[\-\*\.\?\:]|\s)*)</span>'
-    for match in re.finditer(expr, pagetext):
-        result.append(match.group(1))
+    result = [match.group(1) for match in re.finditer(expr, pagetext)]
 
     return result
 
